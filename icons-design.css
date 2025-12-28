@@ -1,0 +1,15 @@
+.circle-search{
+  fill: none;
+  stroke:white;
+  stroke-width: 20px;
+}
+
+.path-search, .line-filter{
+  fill: none;
+  stroke:white;
+  stroke-width: 20px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
