@@ -1,4 +1,16 @@
+const headerTabs = document.querySelectorAll(".header-tab");
 
-setTimeout(() => {
-  document.body.style.backgroundColor="#333333";  
-}, 1000);
+
+headerTabs.forEach(e=>{
+  e.addEventListener('click', ()=>{
+    const active = document.querySelector(".active-tab");
+    if(e!=active){
+      active.classList.remove('active-tab');
+      e.classList.add('active-tab');
+
+    }
+
+
+  });
+
+})

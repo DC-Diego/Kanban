@@ -7,8 +7,84 @@
   <title>TASK and WORKFLOW MANAGEMENT SYSTEM</title>
 </head>
 <body>
-  
-  <h1>HELLO, WORLD!</h1>
+  <!-- 
+    GRUPOS
+  - | ------------------------------------------------------------- | -
+    |                                                               |
+    | ------------------------------------------------------------- | 
+    |                                                           +   |
+    |      |--------|   |--------|   |--------|   |--------|        |
+    |      | Group1 |   | Group2 |   | Group3 |   | Group4 |        |
+    |      |--------|   |--------|   |--------|   |--------|        |
+    |                                                               |
+    |      |--------|   |--------|   |--------|   |--------|        |
+    |      | Group5 |   | Task3 |    | task7  |   | Task8  |        |
+    |      |--------|   |--------|   |--------|   |--------|        |
+    |                                                               |
+  - | ------------------------------------------------------------- | -
+    
+
+       Isso aparece se filtrar, tasks sem grupo aparecem fora do grupo, primeiro grupo depois task
+    -->
+
+    
+  <!--
+    TASKS 
+    - | ------------------------------------------------------------  | -
+      | todas | a fazer | em andamento | feito | cancelado                                           |
+      | ------------------------------------------------------------- | 
+      |   |-------|   |-------|   |-------|   |-------|  |-------|   +
+      |   | task1 |   | task2 |   | task3 |   | task4 |  | task5 |   
+      |   |-------|   |-------|   |-------|   |-------|  |-------|   
+      |                                            
+      |   |-------|   |-------|   |-------|   |-------|  |-------|   
+      |   | task6 |   | task7 |   | task8 |   | task9 |  | task0 |   
+      |   |-------|   |-------|   |-------|   |-------|  |-------|   
+      |                                            
+    - | ------------------------------------------ | -
+
+    SINGLE PAGE APLICATION
+
+  -->
+  <div class="great">
+    <div class="header">
+      <div class="menu">
+        <div class="logo">
+          <img src="./img/logo.png" alt="logo do site">
+          <h1>DuckManager</h1>
+        </div>
+        <button class="header-button">File</button>
+        <button class="header-button">Preferencies</button>
+      </div>
+      <div class="header-tabs-area">
+        <div class="header-tab active-tab"><h1>Todas</h1></div>
+        <div class="header-tab"><h1>A Fazer</h1></div>
+        <div class="header-tab"><h1>Andamento</h1></div>
+        <div class="header-tab"><h1>Concluido</h1></div>
+        <div class="header-tab"><h1>Pendente</h1></div>
+        <div class="header-tab"><h1>Cancelada</h1></div>
+        <div class="header-tab"><h1>Calendário</h1></div>
+      </div>
+    </div>
+    <div class="SPAs">
+      <div id="id-tasks">
+        <div id="id-all"></div>
+        <div id="id-todo"></div>
+        <div id="id-doing"></div>
+        <div id="id-done"></div>
+        <div id="id-canceled"></div>
+        <div id="id-pendent"></div>
+      </div>
+      <div id="id-calendar"></div>
+
+    </div>
+
+
+  </div>
+
+
+
+
 
 
   <script src="script.js"></script>
