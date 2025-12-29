@@ -1,3 +1,7 @@
+svg{
+  transition: 0.25s;
+}
+
 .circle-search{
   fill: none;
   stroke:white;
@@ -12,4 +16,7 @@
   stroke-linejoin: round;
 }
 
-
+.rotateNewTask{
+  rotate: 45deg;
+ 
+}

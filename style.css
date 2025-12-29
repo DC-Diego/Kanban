@@ -440,6 +440,10 @@ right: -8px;
   
 }
 
+.task-body > h1{
+  font-size: 12px;
+  margin-left: 5px;
+}
 
 .progress-bar{
   background-color: gray;
@@ -455,7 +459,6 @@ right: -8px;
 }
 .progress-item{
   height: 50%;
-  /* width: 168px; */
   background: #70ff00;
   margin: 0;
   margin-left: 5px;
@@ -463,10 +466,25 @@ right: -8px;
   border-radius: 20px;
 }
 
-.task-body > h1{
-  font-size: 12px;
-  margin-left: 5px;
+.blur-effect{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  filter: blur(1px);
+  z-index: 1;
+
 }
+
+
+.form-new-task{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  z-index: 2;
+}
+
 
 #id-calendar{
   background-color: red;

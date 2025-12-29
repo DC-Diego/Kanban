@@ -1,9 +1,25 @@
+import {MultiTask, Task, Group, Topic} from "./data.js"
+
+
+const Groups =[];
+const tasks = [];
+const MultiTasks =[];
+
+const blurDiv = document.querySelector(".blur-effect");
+const newTask = document.querySelector(".form-new-task");
+
+const btnNewTask = document.getElementById("btnNewTask"); 
+
+
 const headerTabs = document.querySelectorAll(".header-tab");
-
-const gradientColors = ["#333333", "#030312","#6e4e22","#bafec0","#320000", "#000000"]; // REMOVE?
-
 const great = document.querySelector(".great");
 
+
+
+Groups.push(new Group(0, "Sem Classificação", "-"));
+Groups.push(new Group(1, "TI", "-"));
+Groups.push(new Group(2, "Banana com arroz", "-"));
+Groups.push(new Group(3, "Cebolinha", "-"));
 /*
 3P == 3points, more options etc...
 #icon = ! if has deadline, !! if near deadline, !!! pendent
@@ -89,7 +105,7 @@ function renderTasks(){
     const group = document.createElement("h1");
     // const divIcon = document.createElement("div");
     id.innerText="#"+i;
-    group.innerText=" - Group "+i;
+    group.innerText= ` - ${Groups[Math.floor(Math.random()*Groups.length)].name_group}`;
     idDiv.appendChild(id);
     header.appendChild(group);
 
@@ -134,9 +150,22 @@ function renderTasks(){
 
 }
 
+const newTaskToggle = ()=>{
+  blurDiv.classList.toggle("hidden");
+  newTask.classList.toggle("hidden");
+  btnNewTask.children[0].classList.toggle("rotateNewTask")
+
+
+};
+
+
+blurDiv.addEventListener("click", newTaskToggle);
+btnNewTask.addEventListener("click", newTaskToggle);
 
 
 
 
+
+console.log(Groups)
 
 renderTasks();

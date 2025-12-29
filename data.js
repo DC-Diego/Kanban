@@ -1,8 +1,6 @@
 "hello, world!" 
 
-const Groups =[];
-const tasks =[];
-const MultiTasks =[];
+
 
 
 
@@ -38,7 +36,10 @@ class Task{
     this.desc_task = desc;
     this.status = status;
     this.creationDate_task = creationDate ;
-    this.endDate_task = endDate;
+    this.initData = null ;
+    this.endDate_task = null;
+    this.deadLine_task = endDate;
+    this.priority = null;
     this.topics = [];    
     //TASK has description, name, group, status, time ....
     //NOTE: Just a 
@@ -71,6 +72,18 @@ class MultiTask{
 
 }
 
-const group0 = new Group(0, "Sem grupo", "-"); // Para tarefas que não possuem grupo especificado.
+ // Para tarefas que não possuem grupo especificado.
 
 
+
+export {MultiTask, Task, Group, Topic};
+
+
+
+/*
+Informações Comuns na Frente do Cartão (Visão Rápida)
+Título da Tarefa: Nome claro e conciso da tarefa.
+Responsável: Quem está executando ou é responsável pela tarefa.
+Prioridade: Nível de urgência ou importância.
+Prazo (Due Date): Data de entrega.
+Estimativa: Pontos de história ou horas, indicando o esforço*/
