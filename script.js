@@ -59,43 +59,72 @@ function renderTasks(){
             <h1>Task1 </h1>
             <h1>Lorem ipsum its not lorem ipsum, im writing random text as description, so it may work</h1>
             <h1>percent completed: 1% </h1>
-            
+            <div class="progress-bar">
+              <div class="progress-item">
+
+              </div>
+
+            </div>            
           </div>
         </div>
     */
+
+      const aaaa = ["notStarted","inProgress","done","canceled","Pendent"] ;
+        
+
+
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");    
-    taskDiv.classList.add("notStarted");    
+
+    // taskDiv.classList.add("notStarted");    
+    taskDiv.classList.add(`${aaaa[Math.floor(Math.random()*aaaa.length)]}`);    
 
     const header = document.createElement("div");
     header.classList.add("task-header");     
 
     taskDiv.appendChild(header);
-
+    const idDiv = document.createElement("div");
+    header.appendChild(idDiv);
     const id = document.createElement("h1");
     const group = document.createElement("h1");
     // const divIcon = document.createElement("div");
     id.innerText="#"+i;
-    group.innerText="Group "+i;
-    header.appendChild(id);
+    group.innerText=" - Group "+i;
+    idDiv.appendChild(id);
     header.appendChild(group);
 
     const taskBody = document.createElement("div");
     taskBody.classList.add("task-body");      
     taskDiv.appendChild(taskBody);
 
+    let perc = Math.floor(100* Math.random())/100;
+
     const title = document.createElement("h1");
     const desc = document.createElement("h1");
     const percent = document.createElement("h1");
     title.innerText = "Title "+i;
     desc.innerText = "Lorem ipsum its not lorem ipsum, im writing random text as descriptio... "+i;
-    percent.innerText = "percent completed: "+i+"%";
+    percent.innerText = "percent completed: "+Math.floor(perc*100)+"%";
     
     taskBody.appendChild(title);
     taskBody.appendChild(desc);
     taskBody.appendChild(percent);
     
-    idTasks.appendChild(taskDiv);
+    
+    const progressBar = document.createElement("div");
+    const progressItem = document.createElement("div");
+
+    progressBar.classList.add("progress-bar");
+    progressItem.classList.add("progress-item");
+    progressItem.style.width = progressBar.clientWidth*perc;
+
+
+    progressBar.appendChild(progressItem);
+    taskBody.appendChild(progressBar);
+
+    idTasks.appendChild(taskDiv); 
+    console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
+    progressItem.style.width = Math.floor(progressBar.clientWidth*perc)+"px";
 
 
 
