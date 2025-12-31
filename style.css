@@ -326,13 +326,14 @@ right: -8px;
   display: flex;
   flex-direction: row;
   background-color: #d8d8d8;
-  align-items: center;
+  align-items: start;
   padding-top: 15px;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 10px;
   overflow-y: auto;
-  overflow-x: hidden;           
+  overflow-x: hidden;        
+  margin-bottom: 15px;   
 }
 #id-tasks::-webkit-scrollbar{
   visibility: hidden;
@@ -352,6 +353,7 @@ right: -8px;
   margin-bottom: 15px;
   margin-left: 10px;
   margin-right: 10px;
+  
 
 }
 .task-header{
@@ -380,26 +382,26 @@ right: -8px;
   margin: 0;
 }
 
-.notStarted > .task-header > *:first-child{
+.notStarted > .task-header > *:first-child, .a{
   background-color: #2563EB;
   color: white;
 }
 
-.inProgress > .task-header > *:first-child{
+.inProgress > .task-header > *:first-child, .b{
   background-color: #F59E0B;
   color: white;
 }
 
-.done > .task-header > *:first-child{
+.done > .task-header > *:first-child, .c{
   background-color: #22C55E;
   color: white;
 }
 
-.canceled > .task-header > *:first-child{
+.canceled > .task-header > *:first-child, .d{
   background-color: #6B7280;
   color: white;
 }
-.Pendent > .task-header > *:first-child{
+.pendent > .task-header > *:first-child, .e{
   background-color: #DC2626;
   color: white;
 }
@@ -485,6 +487,41 @@ right: -8px;
   z-index: 2;
 }
 
+
+.task-columns{
+  background: #b8b8b8;
+  border-radius: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-height: -webkit-fill-available;
+  position: relative;
+}
+.task-column-title{
+  position: absolute;
+  border-radius: 5px 5px 0px 0px;
+  height: 25px;
+  width: 100%;
+  align-items: center;
+  margin-top: 0px;
+  justify-content: center;
+  border-bottom: black 1px solid;
+  display: flex;
+}
+.task-column-title > h1{
+  font-size: 16px;
+  align-items: center;
+
+}
+.task-column{
+  margin-top: 30px;
+  height: 100%;
+
+
+}
 
 #id-calendar{
   background-color: red;

@@ -5,6 +5,17 @@ const Groups =[];
 const tasks = [];
 const MultiTasks =[];
 
+const columns = {
+  notStarted: document.getElementById("column-notStarted"),
+  inProgress: document.getElementById("column-inProgress"),
+  done: document.getElementById("column-done"),
+  canceled: document.getElementById("column-canceled"),
+  pendent: document.getElementById("column-pendent")
+
+}
+
+
+
 const blurDiv = document.querySelector(".blur-effect");
 const newTask = document.querySelector(".form-new-task");
 
@@ -63,7 +74,9 @@ function renderTasks(){
     e.remove();
   })
   const idTasks = document.getElementById("id-tasks");
-  for (let i = 0; i < 31; i++) {
+  const statusColumn = ["notStarted","inProgress","done","canceled","pendent"] ;
+    
+  for (let i = 0; i < 31*1; i++) {
     /*
     <div class="task Pendent">
           <div class="task-header">
@@ -85,15 +98,15 @@ function renderTasks(){
         </div>
     */
 
-      const aaaa = ["notStarted","inProgress","done","canceled","Pendent"] ;
         
-
+    let choosenStatus = statusColumn[Math.floor(Math.random()*statusColumn.length)];
 
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");    
+    taskDiv.draggable = true;
 
     // taskDiv.classList.add("notStarted");    
-    taskDiv.classList.add(`${aaaa[Math.floor(Math.random()*aaaa.length)]}`);    
+    taskDiv.classList.add(`${choosenStatus}`);    
 
     const header = document.createElement("div");
     header.classList.add("task-header");     
@@ -138,7 +151,9 @@ function renderTasks(){
     progressBar.appendChild(progressItem);
     taskBody.appendChild(progressBar);
 
-    idTasks.appendChild(taskDiv); 
+    columns[choosenStatus].appendChild(taskDiv); 
+
+
     console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
     progressItem.style.width = Math.floor(progressBar.clientWidth*perc)+"px";
 
@@ -163,6 +178,14 @@ blurDiv.addEventListener("click", newTaskToggle);
 btnNewTask.addEventListener("click", newTaskToggle);
 
 
+
+document.querySelectorAll(".task").forEach(e=>{
+  e.addEventListener("dragStart", (event)=>{
+    console.log("START - ");
+    console.log(event.target);
+  })
+
+})
 
 
 

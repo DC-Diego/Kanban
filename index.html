@@ -68,11 +68,11 @@
       </div>
       <div class="header-tabs-area">
         <div class="header-tab active-tab"><h1>Todas</h1></div>
-        <div class="header-tab"><h1>A Fazer</h1></div>
+        <!-- <div class="header-tab"><h1>A Fazer</h1></div>
         <div class="header-tab"><h1>Andamento</h1></div>
         <div class="header-tab"><h1>Concluido</h1></div>
         <div class="header-tab"><h1>Pendente</h1></div>
-        <div class="header-tab"><h1>Cancelada</h1></div>
+        <div class="header-tab"><h1>Cancelada</h1></div> -->
         <div class="header-tab"><h1>Calendário</h1></div>
       </div>
     </div>
@@ -133,33 +133,72 @@
 
       </div>
       <div id="id-tasks">
-        
 
 
-
-
-
-
-
-        <div class="task done">
-          <div class="task-header">
-              <h1>#1</h1>
-            <h1>group1</h1>
-            <h1>!</h1>
-            <h1>:</h1>
+        <div class="task-columns">
+          <div class="task-column-title a">
+            <h1>NOT STARTED</h1>
           </div>
-          <div class="task-body">
-            <h1>Task1 </h1>
-            <h1>Lorem ipsum its not lorem ipsum, im writing random text as description, so it may work</h1>
-            <h1>percent completed: 1% </h1>
-            <div class="progress-bar">
-              <div class="progress-item">
-
+          <div class="task-column" id="column-notStarted">
+            
+            <div class="task done">
+              <div class="task-header">
+                  <h1>#1</h1>
+                <h1>group1</h1>
+                <h1>!</h1>
+                <h1>:</h1>
               </div>
-
+              <div class="task-body">
+                <h1>Task1 </h1>
+                <h1>Lorem ipsum its not lorem ipsum, im writing random text as description, so it may work</h1>
+                <h1>percent completed: 1% </h1>
+                <div class="progress-bar">
+                  <div class="progress-item">
+    
+                  </div>
+    
+                </div>
+              </div>
             </div>
+       
           </div>
         </div>
+        <div class="task-columns">
+          <div class="task-column-title b">
+            <h1>IN PROGRESS</h1>
+          </div>
+          <div class="task-column" id="column-inProgress">
+          </div>
+        </div>
+        <div class="task-columns">
+          <div class="task-column-title c">
+            <h1>DONE</h1>
+          </div>
+          <div class="task-column" id="column-done" >
+          </div>
+        </div>
+        <div class="task-columns">
+          <div class="task-column-title d">
+            <h1>CANCELED</h1>
+          </div>
+          <div class="task-column" id="column-canceled">
+          </div>
+        </div>
+        <div class="task-columns">
+          <div class="task-column-title e">
+            <h1>PENDENT</h1>
+          </div>
+          <div class="task-column" id="column-pendent">
+          </div>
+        </div>
+
+
+
+
+
+
+
+       
       </div>
       <div id="id-calendar" class="hiddeen"></div>
 
