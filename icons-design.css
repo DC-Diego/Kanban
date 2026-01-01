@@ -20,3 +20,15 @@ svg{
   rotate: 45deg;
  
 }
+.rotateChange{
+  rotate: 90deg;
+ 
+}
+
+.line-change{
+  fill: none;
+  stroke: black;
+  stroke-width: 20px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

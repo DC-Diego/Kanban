@@ -44,11 +44,37 @@ Groups.push(new Group(3, "Cebolinha", "-"));
 |---------------------------|
 
 
+ <div class="change-task-display">
 
+                  <svg viewBox="0 0 250 250">
+                    <line class="line-change" x1="75" y1="75" x2="125" y2="125"></line>
+                    <line class="line-change" x1="175" y1="75" x2="125" y2="125"></line>
+
+                  </svg>
+                </div>
 
 
 
 */
+function createDisplayChanger(){
+  const div = document.createElement("div");
+  div.classList.add("change-task-display");
+  div.innerHTML=` <svg viewBox="0 0 250 250">
+  <line class="line-change" x1="75" y1="100" x2="125" y2="150"></line>
+  <line class="line-change" x1="175" y1="100" x2="125" y2="150"></line>
+
+</svg>`;
+
+  return div;
+
+
+}
+
+// console.log("createDisplayChanger()");
+// console.log(createDisplayChanger());
+
+
+
 
 
 
@@ -68,8 +94,41 @@ headerTabs.forEach((e,i)=>{
 
 });
 
+function eventToDisplays(binder, taskDiv){
+
+    binder.addEventListener('click', (f)=>{
+      binder.querySelector("svg").classList.toggle("rotateChange");
+      taskDiv.querySelector(".task-header").style.backgroundColor="#f00"; // ADD o modo menor para caber todas as tasks, ou modo completo "Quando clicar no binder"
+
+      /*
+        Modo Menor:
+        |----------------------------|
+        |  #id  -  #group          < |
+        |----------------------------|
+        | #title              #data  |
+        |----------------------------|
+
+        Modo Normal:
+        |----------------------------|
+        |  #id  -  #group          < |
+        |----------------------------|
+        | #title              #data  |
+        | #desc                      |
+        | #percent                   |
+        | #percentbar                |
+        |----------------------------|
+
+      
+      */
+
+    })
+    
+  
+}
+
 
 function renderTasks(){
+  // return;
   document.querySelectorAll(".task").forEach(e=>{
     e.remove();
   })
@@ -98,6 +157,15 @@ function renderTasks(){
         </div>
     */
 
+        /*
+        
+           <div class="titleDateAlign">
+                  <h1>Task1 </h1>
+                  <h1>12/12</h1>
+                </div>
+                
+        */
+
         
     let choosenStatus = statusColumn[Math.floor(Math.random()*statusColumn.length)];
 
@@ -122,20 +190,31 @@ function renderTasks(){
     idDiv.appendChild(id);
     header.appendChild(group);
 
+    const displayChange = createDisplayChanger();
+    header.appendChild(displayChange);
     const taskBody = document.createElement("div");
     taskBody.classList.add("task-body");      
     taskDiv.appendChild(taskBody);
 
     let perc = Math.floor(100* Math.random())/100;
 
+
+    const titleDateAlign = document.createElement("div");
+    titleDateAlign.classList.add("titleDateAlign");
+    taskBody.appendChild(titleDateAlign);
+
+
     const title = document.createElement("h1");
     const desc = document.createElement("h1");
+    const date = document.createElement("h1");
     const percent = document.createElement("h1");
     title.innerText = "Title "+i;
     desc.innerText = "Lorem ipsum its not lorem ipsum, im writing random text as descriptio... "+i;
+    date.innerText = "12/1"+i;
     percent.innerText = "percent completed: "+Math.floor(perc*100)+"%";
     
-    taskBody.appendChild(title);
+    titleDateAlign.appendChild(title);
+    titleDateAlign.appendChild(date);
     taskBody.appendChild(desc);
     taskBody.appendChild(percent);
     
@@ -157,6 +236,7 @@ function renderTasks(){
     console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
     progressItem.style.width = Math.floor(progressBar.clientWidth*perc)+"px";
 
+    eventToDisplays(displayChange, taskDiv);
 
 
   }
