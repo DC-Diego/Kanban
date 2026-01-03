@@ -3,6 +3,7 @@
 .hidden{
   visibility: hidden;
   cursor: none;
+  position: absolute;
 }
 
 *{
@@ -575,5 +576,24 @@ right: -8px;
 #id-calendar{
   background-color: red;
 
+
+}
+
+.newTask-tab{
+  background-color: white;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  background-color: #d8d8d8;
+  align-items: start;
+  padding-top: 15px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;        
+  margin-bottom: 15px;   
 
 }

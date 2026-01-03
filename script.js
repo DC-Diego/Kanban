@@ -5,6 +5,11 @@ const Groups =[];
 const tasks = [];
 const MultiTasks =[];
 
+const TabsArea  = document.querySelector(".header-tabs-area");
+
+const tabs = [];
+
+
 const columns = {
   notStarted: document.getElementById("column-notStarted"),
   inProgress: document.getElementById("column-inProgress"),
@@ -75,30 +80,44 @@ function createDisplayChanger(){
 
 
 
+function setTabEnable(e){
+  const active = document.querySelector(".active-tab");
+  if(e!=active){
+    active.classList.remove('active-tab');
+    e.classList.add('active-tab');
+    // if(i < gradientColors.length)
+      // great.style.background = `${gradientColors[i]}`;
 
+  }
+
+}
+
+
+function tabEventHandler(e){
+  e.addEventListener('click', ()=>{
+   setTabEnable(e);
+  
+  });
+
+
+ 
+}
 
 
 headerTabs.forEach((e,i)=>{
-  e.addEventListener('click', ()=>{
-    const active = document.querySelector(".active-tab");
-    if(e!=active){
-      active.classList.remove('active-tab');
-      e.classList.add('active-tab');
-      // if(i < gradientColors.length)
-        // great.style.background = `${gradientColors[i]}`;
-
-    }
-
-
-  });
+  tabEventHandler(e); 
 
 });
 
-function eventToDisplays(binder, taskDiv){
+function eventToDisplays(binder, taskDiv, hideObjs){
 
     binder.addEventListener('click', (f)=>{
       binder.querySelector("svg").classList.toggle("rotateChange");
-      taskDiv.querySelector(".task-header").style.backgroundColor="#f00"; // ADD o modo menor para caber todas as tasks, ou modo completo "Quando clicar no binder"
+      hideObjs.desc.classList.toggle("hidden"); 
+      hideObjs.percent.classList.toggle("hidden"); 
+      hideObjs.progressBar.classList.toggle("hidden"); 
+      
+      // ADD o modo menor para caber todas as tasks, ou modo completo "Quando clicar no binder"
 
       /*
         Modo Menor:
@@ -126,13 +145,13 @@ function eventToDisplays(binder, taskDiv){
   
 }
 
-
+const idTasks = document.getElementById("id-tasks");
 function renderTasks(){
   // return;
   document.querySelectorAll(".task").forEach(e=>{
     e.remove();
   })
-  const idTasks = document.getElementById("id-tasks");
+
   const statusColumn = ["notStarted","inProgress","done","canceled","pendent"] ;
     
   for (let i = 0; i < 31*1; i++) {
@@ -236,7 +255,12 @@ function renderTasks(){
     console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
     progressItem.style.width = Math.floor(progressBar.clientWidth*perc)+"px";
 
-    eventToDisplays(displayChange, taskDiv);
+    desc.classList.toggle("hidden"); 
+    percent.classList.toggle("hidden"); 
+    progressBar.classList.toggle("hidden"); 
+    
+
+    eventToDisplays(displayChange, taskDiv, {desc:desc,percent:percent, progressBar:progressBar});
 
 
   }
@@ -245,12 +269,27 @@ function renderTasks(){
 
 }
 
+let contador = 0;
+
 const newTaskToggle = ()=>{
-  blurDiv.classList.toggle("hidden");
-  newTask.classList.toggle("hidden");
-  btnNewTask.children[0].classList.toggle("rotateNewTask")
+  const aba = {id:contador++};
+  const div = document.createElement("div");
+  div.classList.add("header-tab");
+  const h = document.createElement("h1");
+  h.innerText="New task "+aba.id;
+  tabs.push(aba);
+  div.appendChild(h);
+  TabsArea.appendChild(div);
+  tabEventHandler(div);
+  setTabEnable(div);
 
+  /* AAAAAAAAAAAAAAA - Colocar o sistema que muda as abas */
+/*
+  const a = document.querySelector(".newTask-tab");
+  a.classList.toggle("hidden");
+  idTasks.classList.toggle("hidden");*/
 
+  
 };
 
 
