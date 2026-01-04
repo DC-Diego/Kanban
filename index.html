@@ -66,15 +66,33 @@
         <button class="header-button">File</button>
         <button class="header-button">Preferencies</button>
       </div>
+
       <div class="header-tabs-area">
-        <div class="header-tab active-tab"><h1>Todas</h1></div>
-        <!-- <div class="header-tab"><h1>A Fazer</h1></div>
-        <div class="header-tab"><h1>Andamento</h1></div>
-        <div class="header-tab"><h1>Concluido</h1></div>
-        <div class="header-tab"><h1>Pendente</h1></div>
-        <div class="header-tab"><h1>Cancelada</h1></div> -->
-        <div class="header-tab"><h1>Calendário</h1></div>
-        <!-- <div class="header-tab"><h1>New task</h1></div> -->
+        <div class="header-nav-buttons left-tab">
+          <svg viewBox="0 0 250 250">
+            <line class="line-filter" x1="150" y1="75" x2="100" y2="125"></line>
+            <line class="line-filter" x1="150" y1="175" x2="100" y2="125"></line>
+
+          </svg>
+        </div>
+        <div class="tabber">
+          <div class="header-tab active-tab"><h1>Todas</h1></div>
+          <!-- <div class="header-tab"><h1>A Fazer</h1></div>
+          <div class="header-tab"><h1>Andamento</h1></div>
+          <div class="header-tab"><h1>Concluido</h1></div>
+          <div class="header-tab"><h1>Pendente</h1></div>
+          <div class="header-tab"><h1>Cancelada</h1></div> -->
+          <div class="header-tab"><h1>Calendário</h1></div>
+          <!-- <div class="header-tab"><h1>New task</h1></div> -->
+        </div>
+        <div class="header-nav-buttons right-tab"> 
+          <svg viewBox="0 0 250 250">
+            <line class="line-filter" x1="100" y1="75" x2="150" y2="125"></line>
+            <line class="line-filter" x1="100" y1="175" x2="150" y2="125"></line>
+
+          </svg>
+        </div>
+        
       </div>
     </div>
     <!-- FAZER MENU com ferramentas de "Filtro, ordenação, Busca, nova tarefa(para a fazer)"-->
@@ -133,7 +151,7 @@
 
 
       </div>
-      <div id="id-tasks">
+      <div id="id-tasks" class="task-tab ">
 
 
         <div class="task-columns">
@@ -215,14 +233,43 @@
        
       </div>
 
-      <div class="newTask-tab hidden">
-aaa
+      <div class="task-tab newTask taskActive">
+        <div class="newTask-header"> 
+          <h1 > Criar nova tarefa</h1>
+          <div class="btn-newTask-cancel" title="cancelar criar tarefa">
+            <svg viewBox="0 0 250 250">
+              <line class="line-filter" x1="60" y1="60" x2="190" y2="190"></line>
+              <line class="line-filter" x1="60" y1="190" x2="190" y2="60"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="newTask-body">
+          <h1>Nome</h1>
+          <h1>Grupo da tarefa</h1>
+          <h1>Descrição</h1>
+          <h1>Topicos:</h1>
+          <h2>• Topico 1</h2>
+          <h2>• Topico 2</h2>
+          <h2>• Topico 3</h2>
+          <h2>• Topico 4</h2>
+          <h1>Prazo Checkbox?Display:</h1>
+          <h1>Prazo</h1>
+          <h1>Prioridade</h1>
+          <br>
+          <h1>TAREFAS</h1>
+          <h1>Tarefa 1</h1>
+          <h1>Tarefa 2</h1>
+          <h1>Tarefa 3</h1>
+          
 
+
+        </div>
+       
 
       </div>
 
 
-      <div id="id-calendar" class="hiddeen"></div>
+      <div id="id-calendar" class="task-tab"></div>
 
     </div>
 

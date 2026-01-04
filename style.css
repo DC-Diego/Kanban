@@ -101,7 +101,7 @@ html, body{
 .header-tabs-area{
   width: 100%;
   height: 30px;
-  margin-left: 5px;
+  justify-content: center;
   position: relative;
   align-items: end;
   overflow: hidden;
@@ -118,13 +118,15 @@ html, body{
 }
 
 .header-tab{
+  margin: 0;
   margin-left: 5px;
   display: flex;
   align-items: center;
   height: 90%;
+  min-width: 70px;
   color: white;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 1px;
   border-radius: 5px 5px 0px 0px;;
 
@@ -135,7 +137,7 @@ html, body{
 
 }
 .header-tab > h1{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 .active-tab{
@@ -303,11 +305,6 @@ html, body{
   margin-left: 40px;
   border-radius: 50%;
 }
-  /*
-::after
-right: -8px;
-    clip-path: path("M 0 0 Q 0 8, 8 8 H 0 Z");  
-*/
 .SPAs{
   /* background-color: #3a3a5b; */
   background-color: #d8d8d8;
@@ -316,10 +313,11 @@ right: -8px;
   height: 100%;
   min-height: 0;
   display: flex;
+  align-items: center;
   flex-direction: column;
 
 }
-
+/* 
 #id-tasks{
   width: 100%;
   min-height: 0;
@@ -335,7 +333,7 @@ right: -8px;
   overflow-y: auto;
   overflow-x: hidden;        
   margin-bottom: 15px;   
-}
+} */
 #id-tasks::-webkit-scrollbar{
   visibility: hidden;
 
@@ -351,7 +349,7 @@ right: -8px;
   height: auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
   
@@ -579,7 +577,7 @@ right: -8px;
 
 }
 
-.newTask-tab{
+.task-tab{
   background-color: white;
   width: 100%;
   min-height: 0;
@@ -594,6 +592,112 @@ right: -8px;
   gap: 10px;
   overflow-y: auto;
   overflow-x: hidden;        
-  margin-bottom: 15px;   
+  margin-bottom: 15px;
+  
+  cursor: none;
+  position: absolute;
+  visibility: hidden;
+
+}
+.taskActive{
+  visibility: visible; 
+  cursor: default;
+  position: relative;
+  
+}
+
+.header-nav-buttons{
+  position: relative;
+  height: 90%;
+  width: 30px;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #1f1f1f;
+  transition: 0.25s;
+}
+.header-nav-buttons:hover{
+  height: 100%;
+  background-color: #444444;
+
+
+
+}
+
+
+
+.tabber{
+  display: flex;
+  min-width: 0;
+  width: 93%;
+  height: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative;
+  align-items: end;
+  overflow: hidden;
+  overflow-x: auto;
+transition: 000.25s;
+}
+.tabber::-webkit-scrollbar{
+  visibility: hidden;
+  display: none;
+}
+
+.newTask{
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  background-color: red;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+}
+.newTask::-webkit-scrollbar{visibility: hidden;}
+
+.newTask-header{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+
+
+}
+.newTask-header > h1{
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.btn-newTask-cancel{
+  aspect-ratio: 1/1;
+  height: 25px;
+
+
+}
+
+.newTask-body{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #22C55E;
+  height: auto;
+  margin-top: 30px;
+
+}
+
+.newTask-body > h1,.newTask-body >  h2{
+  width: auto;
+  margin: 0;
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 400;
+
 
 }

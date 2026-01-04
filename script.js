@@ -5,9 +5,18 @@ const Groups =[];
 const tasks = [];
 const MultiTasks =[];
 
-const TabsArea  = document.querySelector(".header-tabs-area");
+const SPA  = document.querySelector(".SPAs");
 
-const tabs = [];
+const TabsArea  = document.querySelector(".tabber");
+
+const idTasks = document.getElementById("id-tasks");
+const idCalendar = document.getElementById("id-calendar");
+
+const tabs = [idTasks, idCalendar];
+
+
+const leftTab = document.querySelector(".left-tab");
+const rightTab = document.querySelector(".right-tab");
 
 
 const columns = {
@@ -18,6 +27,28 @@ const columns = {
   pendent: document.getElementById("column-pendent")
 
 }
+
+
+TabsArea.addEventListener('wheel', (e) => {
+  e.preventDefault(); // impede o scroll vertical da página
+  TabsArea.scrollLeft += e.deltaY;
+}, { passive: false });
+
+
+leftTab.addEventListener('click',()=>{
+  TabsArea.scrollBy({
+    left: -210,
+    behavior: 'smooth' 
+  });
+
+});
+rightTab.addEventListener('click',()=>{
+  TabsArea.scrollBy({
+    left: 210,
+    behavior: 'smooth' 
+  });
+
+});
 
 
 
@@ -78,13 +109,40 @@ function createDisplayChanger(){
 // console.log("createDisplayChanger()");
 // console.log(createDisplayChanger());
 
+function newTab(type = null){
+  
+  const div = document.createElement("div");
+  div.classList.add("task-tab");
+
+  SPA.appendChild(div);
+
+  div.innerText=""+Math.floor(Math.random()*1000)
+  // switch(type){
+  //   case 'new-task':
+      
+
+  //     break;
 
 
-function setTabEnable(e){
+
+    
+  // }
+
+  return div;
+
+
+
+}
+
+function setTabEnable(e, tab){
   const active = document.querySelector(".active-tab");
   if(e!=active){
     active.classList.remove('active-tab');
     e.classList.add('active-tab');
+
+    document.querySelector(".taskActive").classList.remove("taskActive");
+    tab.classList.toggle("hidden");
+    tab.classList.toggle("taskActive");
     // if(i < gradientColors.length)
       // great.style.background = `${gradientColors[i]}`;
 
@@ -93,9 +151,9 @@ function setTabEnable(e){
 }
 
 
-function tabEventHandler(e){
+function tabEventHandler(e, tab){
   e.addEventListener('click', ()=>{
-   setTabEnable(e);
+   setTabEnable(e, tab);
   
   });
 
@@ -105,7 +163,8 @@ function tabEventHandler(e){
 
 
 headerTabs.forEach((e,i)=>{
-  tabEventHandler(e); 
+
+  tabEventHandler(e, tabs[i]); 
 
 });
 
@@ -145,7 +204,6 @@ function eventToDisplays(binder, taskDiv, hideObjs){
   
 }
 
-const idTasks = document.getElementById("id-tasks");
 function renderTasks(){
   // return;
   document.querySelectorAll(".task").forEach(e=>{
@@ -276,12 +334,17 @@ const newTaskToggle = ()=>{
   const div = document.createElement("div");
   div.classList.add("header-tab");
   const h = document.createElement("h1");
-  h.innerText="New task "+aba.id;
-  tabs.push(aba);
+  h.innerText="Task "+aba.id;
+  // tabs.push(aba);
   div.appendChild(h);
   TabsArea.appendChild(div);
-  tabEventHandler(div);
-  setTabEnable(div);
+  div.title = "Nova tarefa "+aba.id;
+
+  const taskTab = newTab();
+
+
+  tabEventHandler(div, taskTab);
+  setTabEnable(div, taskTab);
 
   /* AAAAAAAAAAAAAAA - Colocar o sistema que muda as abas */
 /*
