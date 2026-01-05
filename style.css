@@ -643,7 +643,18 @@ transition: 000.25s;
 }
 
 .newTask{
+  width: 100%;
   height: 100%;
+  background-color: purple;
+  margin-bottom: 0px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 0px;
+  align-items: center;
+}  
+
+.newTask-form{
+  height: 95%;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -654,8 +665,13 @@ transition: 000.25s;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: normal;
+  border-radius: 5px;
+
 }
-.newTask::-webkit-scrollbar{visibility: hidden;}
+
+
+
+.newTask::-webkit-scrollbar, .newTask-form::-webkit-scrollbar{visibility: hidden;}
 
 .newTask-header{
   width: 90%;
@@ -664,6 +680,7 @@ transition: 000.25s;
   align-items: center;
   justify-content: space-between;
   height: 30px;
+  padding-top: 10px;
 
 
 }
@@ -688,7 +705,7 @@ transition: 000.25s;
   align-items: start;
   background-color: #22C55E;
   height: auto;
-  margin-top: 30px;
+  margin-top: 15px;
 
 }
 
@@ -701,3 +718,59 @@ transition: 000.25s;
 
 
 }
+.newTask-body-partition{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  height: auto;
+  background-color: green;
+  gap:25px;
+}
+
+
+.newTask-input-area textarea{ 
+  width: 98%;
+  border: solid 1px black;
+  border-radius: 4px;  
+}
+
+
+.newTask-input-area h1{ margin-left: 0px;}
+.newTask-input-area *{
+  font-size: 14px;
+
+}
+.newTask-input-area input[type="text"]{
+  color: white;
+  background-color: #313131;
+  outline: none;
+  border: none;
+  width: 90%;
+  padding: 8px 10px;
+  border-radius: 5px;
+
+}
+.newTask-input-area select{
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-width: 180px;
+  width: 90%;
+
+}
+.newTask-input-area{
+  background-color: white;
+  flex: 1;
+  height: 90%;
+  display: flex;
+  min-width: 0;
+  padding: 0px 5px 5px 5px;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+

@@ -310,7 +310,7 @@ function renderTasks(){
     columns[choosenStatus].appendChild(taskDiv); 
 
 
-    console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
+    // console.log( progressBar.clientWidth+"  "+ perc+"    "+(progressBar.clientWidth*perc));
     progressItem.style.width = Math.floor(progressBar.clientWidth*perc)+"px";
 
     desc.classList.toggle("hidden"); 
@@ -371,6 +371,6 @@ document.querySelectorAll(".task").forEach(e=>{
 
 
 
-console.log(Groups)
+// console.log(Groups)
 
 renderTasks();
