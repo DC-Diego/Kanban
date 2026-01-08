@@ -532,6 +532,7 @@ html, body{
   width: 50%;
   height: 50%;
   background-color: white;
+  
   z-index: 2;
 }
 
@@ -645,9 +646,9 @@ transition: 000.25s;
 .newTask{
   width: 100%;
   height: 100%;
-  background-color: purple;
   margin-bottom: 0px;
   flex-direction: column;
+  background-color: #a1a1a1;
   justify-content: space-around;
   padding-top: 0px;
   align-items: center;
@@ -659,7 +660,7 @@ transition: 000.25s;
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0;
-  background-color: red;
+  background-color: #1f1f1f;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -686,6 +687,7 @@ transition: 000.25s;
 }
 .newTask-header > h1{
   width: 100%;
+  color: #ffffff;
   text-align: left;
   font-size: 18px;
   font-weight: 500;
@@ -703,7 +705,7 @@ transition: 000.25s;
   display: flex;
   flex-direction: column;
   align-items: start;
-  background-color: #22C55E;
+  /* background-color: #22C55E; */
   height: auto;
   margin-top: 15px;
 
@@ -719,38 +721,44 @@ transition: 000.25s;
 
 }
 .newTask-body-partition{
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   min-height: 60px;
   height: auto;
-  background-color: green;
   gap:25px;
 }
 
 
 .newTask-input-area textarea{ 
-  width: 98%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   border: solid 1px black;
   border-radius: 4px;  
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400; ;
+
 }
 
 
-.newTask-input-area h1{ margin-left: 0px;}
+.newTask-input-area h1{ margin-left: 0px; font-weight: 500; font-size: 15px; color: #ffffff;}
 .newTask-input-area *{
   font-size: 14px;
 
 }
 .newTask-input-area input[type="text"]{
-  color: white;
-  background-color: #313131;
+  color: black;
+  background-color: #ffffff;
+  border-radius: 5px;
+  text-align: left;
+  width: 90%;
+  font-size: 14px;
   outline: none;
   border: none;
-  width: 90%;
   padding: 8px 10px;
-  border-radius: 5px;
 
 }
 .newTask-input-area select{
@@ -762,7 +770,6 @@ transition: 000.25s;
 
 }
 .newTask-input-area{
-  background-color: white;
   flex: 1;
   height: 90%;
   display: flex;
@@ -772,5 +779,104 @@ transition: 000.25s;
   align-items: center;
 
 }
+.topicsSpace,.multiTaskArea{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+  
+}
 
+.topicArea{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
+.topicArea > input{
+  text-align: left;
+  width: 90%;
+  font-size: 14px;
+  margin-left: 15px;
+  outline: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px black solid;
+  
+}
+.topicArea > h1{
+  color: #000000;
+  text-align: left;
+  width: 90%;
+  font-size: 14px;
+  margin-left: 15px;
+  font-weight: 400;  
+}
+
+.topicArea > input:focus{
+  border-bottom: 1px #3998fe solid;
+}
+
+.topicArea > div{
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.btnNewTopic, .btnNewMultiTask{
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  background-color: #00a35f;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;  
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  transition: 0.25s;
+
+}
+
+.btnNewTopic:hover, .btnNewMultiTask:hover{
+  background-color: #22C55E;
+
+}
+.newTask-input-area input[type="checkbox"],.newTask-input-area input[type="checkbox"] + h1, .newTask-input-area input[type="checkbox"] + h1 + input{
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 500;
+
+}
+
+.createNewTask{
+  width: 94%;
+  height: 40px;
+  margin-top: 10px;
+  background-color: #2563EB;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;  
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  transition: 0.25s;
+}
+
+.createNewTask:hover{
+  background-color: #3998fe;
+
+}

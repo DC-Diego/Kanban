@@ -1,9 +1,5 @@
 "hello, world!" 
 
-
-
-
-
 class Topic{
   constructor(name){
     this.name = name;

@@ -248,12 +248,12 @@
             <div class="newTask-body-partition">
               
               <div class="newTask-input-area">
-                <h1>Nome da tarefa</h1> 
+                <h1>Nome da tarefa:</h1> 
                 <input type="text" placeholder="task name" maxlength="50">
 
               </div>
               <div class="newTask-input-area">
-                <h1>Grupo da tarefa</h1>
+                <h1>Grupo da tarefa:</h1>
                 <!-- <input type="" placeholder="task name" maxlength="50"> -->
                 <select name="cboGroup" id="cboGroup">
                   <option value="A">a</option>
@@ -270,34 +270,99 @@
 
 
             </div>
+            <div class="newTask-body-partition" style="gap: 0; min-height: 40px;" >
+              <div class="newTask-input-area " style="flex-direction:row">
+                <input type="checkbox" placeholder="task name" maxlength="50">
+                <h1>Prazo ?</h1>
+                <input type="date" maxlength="50" >
+              </div>
+              <div class="newTask-input-area " style="flex-direction:row">
+                <h1 style="margin: 0; margin-left: 40%;">Prioridade</h1> 
+                <input type="number" placeholder="0" value="0" min="0" style="min-width: 40px; width: auto;height: 25px; margin-left: 15px;" >
+              </div>
+
+
+            </div>
             <div class="newTask-body-partition" >
               <div class="newTask-input-area" >
-                <h1>Descrição</h1>
+                <h1>Descrição:</h1>
                 <textarea name="e" id="" cols="30" rows="8" placeholder="Descrição da tarefa" maxlength="300"></textarea>
               </div>  
             </div>
             <div class="newTask-body-partition" >
               <div class="newTask-input-area" >
                 <h1>Topicos:</h1>
-                <h2>• Topico 1</h2>
-                <h2>• Topico 2</h2>
-                <h2>• Topico 3</h2>
-                <h2>• Topico 4</h2>
-
+                <div class="topicsSpace">
+                  <div class="topicArea">
+                    <input placeholder="topico 1"  value="Topico 1">
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                  <div class="topicArea">
+                    <input placeholder="topico 2"  value="Topico 2">
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                  <div class="topicArea">
+                    <input placeholder="topico 3"  value="Topico 3">
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                  <div class="topicArea">
+                    <input placeholder="topico 4"  value="Topico 4">
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                </div>
+                <button class="btnNewTopic">Novo topico</button>
 
               </div>  
             </div>
-            
-            <h1>Prazo Checkbox?Display:</h1>
-            <h1>Prazo</h1>
-            <h1>Prioridade</h1>
-            <br>
-            <h1>TAREFAS</h1>
-            <h1>Tarefa 1</h1>
-            <h1>Tarefa 2</h1>
-            <h1>Tarefa 3</h1>
-            <button>Criar Tarefa</button>
+           
+            <div class="newTask-body-partition" >
+              <div class="newTask-input-area" >
+                <h1>Tarefas:</h1>
+                <div class="multiTaskArea">
+                  <div class="topicArea">
+                    <h1>Tarefa 1</h1>
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                  <div class="topicArea">
+                    <h1>Tarefa 2</h1>
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
+                  <div class="topicArea">
+                    <h1>Tarefa 3</h1>
+                    <div><svg viewBox="0 0 250 250">
+                      <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+                      <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+                    </svg></div>
+                  </div>
 
+
+                </div>
+                <button class="btnNewMultiTask">Nova sub-tarefa</button>
+                
+                
+              </div>
+            </div>
+     
+            
+            <button class="createNewTask">Criar Tarefa</button>
 
           </div>
         </div>
