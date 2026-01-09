@@ -32,3 +32,33 @@ svg{
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+
+.closeTabSvg{
+  height: 15px;
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  background-color: #ffffff20;
+  border-radius: 50%;
+  margin-left: 5px;
+  display: none;
+  pointer-events: none;
+  cursor: none;
+  opacity: 0;
+  transition: 0.25s;
+}
+
+.header-tab:hover > .closeTabSvg{
+  display: flex;
+  pointer-events: initial;
+  cursor: default;
+  opacity: 1;
+
+
+}
+
+.closeTabSvg:hover{
+  background-color: #ffffff40;
+
+}
+

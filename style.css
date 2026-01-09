@@ -145,6 +145,10 @@ html, body{
   position: relative;
   cursor: default;
 }
+.active-tab > h1{
+  margin-left: 0px;
+}
+
 .active-tab:hover{
   background-color: #1f1f1f;
   cursor: default;
@@ -696,8 +700,13 @@ transition: 000.25s;
 .btn-newTask-cancel{
   aspect-ratio: 1/1;
   height: 25px;
+  transition: 0.25s;
+  border-radius: 5px;
+}
 
-
+.btn-newTask-cancel:hover{
+  background-color: #ffffff40;
+  scale: 1.2;
 }
 
 .newTask-body{
@@ -784,7 +793,7 @@ transition: 000.25s;
   flex-direction: column;
   width: 100%;
   height: auto;
-  min-height: 0;
+  min-height: 40px;
   background-color: white;
   border-radius: 5px;
   margin-top: 5px;
