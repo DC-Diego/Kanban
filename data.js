@@ -25,13 +25,13 @@ class Group{
 }
 
 class Task{
-  constructor(id, name, desc, id_group = 0, status, creationDate, endDate){
+  constructor(id, name, desc, id_group = 0, status, endDate){
     this.id_task = id; // PK
     this.id_group = id_group; // FK - Group(id_group)
     this.name_task = name;
     this.desc_task = desc;
     this.status = status;
-    this.creationDate_task = creationDate ;
+    this.creationDate_task = new Date().toISOString().slice(0, 10) ;
     this.initData = null ;
     this.endDate_task = null;
     this.deadLine_task = endDate;

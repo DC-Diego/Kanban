@@ -1,5 +1,5 @@
 import {Groups, tasks, MultiTasks } from "./file.js"
-
+import {MultiTask, Task, Group, Topic} from "./data.js"
 
 const SPA  = document.querySelector(".SPAs");
 const TabsArea  = document.querySelector(".tabber");
@@ -104,10 +104,96 @@ const newTaskToggle = ()=>{
   setTabEnable(div, taskTab);
 };
 
-blurDiv.addEventListener("click", newTaskToggle);
-function createNewTaskTab(closeTabEvent){
+
+
+function multiTaskPopup(){
+  const div = document.createElement("div");
+  div.classList.add("multiTaskPopup");
+  div.classList.add("hidden");
+
+  const h1 = document.createElement("h1");
+  h1.innerText = "Adicionar nova subtarefa";
   
+  const cboSubTask = document.createElement("select");
+  // cboSubTask.style.marginTop="5px";
+  
+  const desc = document.createElement("p");
+  desc.innerText = "Descrição:\n ";
+
+
+  const btnAccept = document.createElement("button");
+  btnAccept.innerText="Aceitar";
+  btnAccept.classList.add('btnAccept');
+  btnAccept.style.width="90%";
+  btnAccept.style.marginBottom="5px";
+
+  div.appendChild(h1);
+  div.appendChild(cboSubTask);
+  div.appendChild(desc);
+  div.appendChild(btnAccept);
+
+
+  return div;
+
+}
+
+
+
+
+
+function createNewTaskTab(closeTabEvent){
+  const tempMulti = [];
+  const tasksClone = JSON.parse(JSON.stringify(tasks));
+
+
   const newTaskTab = document.createElement("div");
+  const multi = multiTaskPopup();
+
+  newTaskTab.appendChild(multi);
+  
+  blurDiv.addEventListener('click', closePopup);
+
+  function closePopup(){
+    multi.classList.add("hidden");
+    blurDiv.classList.add("hidden");
+
+  }
+  const cboAddSubTasks = multi.querySelector('select'); 
+  tasks.forEach((e, i)=>{
+    if(!i)  multi.querySelector('p').innerText = `Descrição:\n ${tasks[i].desc_task}`;
+    const opt = document.createElement("option");
+    opt.value=e.name_task;
+    opt.innerText=e.name_task;
+    cboAddSubTasks.appendChild(opt);
+    
+  });
+ 
+  function removeMultiTask(id){
+    tasksClone.push(tasks[id]);
+    let i = 0;
+    for(i; i < tempMulti.length;i++){
+      if(tempMulti[i] == id) break;
+    }
+    tempMulti.splice(i,1);
+  }
+  
+
+  multi.querySelector('button').addEventListener("click", ()=>{
+    let i = cboAddSubTasks.selectedIndex;
+    appendMultiTask(cboAddSubTasks.value, removeMultiTask, tasksClone[i].id_task);
+
+    tempMulti.push(tasksClone[i].id_task);
+    tasksClone.splice(i,1);
+    closePopup();
+  });
+
+
+  cboAddSubTasks.addEventListener("change", ()=>{
+    let i = cboAddSubTasks.selectedIndex;
+    multi.querySelector('p').innerText = `Descrição:\n ${tasks[i].desc_task}`;
+
+  });
+
   newTaskTab.classList.add("task-tab");
   newTaskTab.classList.add("newTask");
   const newTaskForm = document.createElement("div");
@@ -306,23 +392,43 @@ function createNewTaskTab(closeTabEvent){
   const divMultiTaskArea = document.createElement("div");
   divMultiTaskArea.classList.add("multiTaskArea");
 
-  function appendMultiTask(name){
-    divMultiTaskArea.appendChild(NewMultiTask(name));
+  function appendMultiTask(name, eventClose, id){
+    divMultiTaskArea.appendChild(NewMultiTask(name, eventClose, id));
 
   }
 
   
-  for (let i = 0; i < 4; i++) {
-    appendMultiTask("Task "+(i+1));
-  }
+  
   const btnNewMultiTask = document.createElement("button");
   btnNewMultiTask.classList.add("btnNewMultiTask");
+
+
   btnNewMultiTask.innerText = "Nova sub-tarefa";
 
   inpArea.appendChild(h1);
   inpArea.appendChild(divMultiTaskArea);
   inpArea.appendChild(btnNewMultiTask);
-  btnNewMultiTask.addEventListener("click", ()=>{appendMultiTask("Task "+Math.floor(Math.random()*99))});
+
+  /* FLAG-CHANGE-1 */
+  btnNewMultiTask.addEventListener("click", ()=>{
+    multi.classList.remove("hidden");
+    blurDiv.classList.remove("hidden");
+
+    for(let i = cboAddSubTasks.children.length-1; i >= 0;i--)
+      cboAddSubTasks.children[i].remove();
+    
+    tasksClone.forEach((e,j)=>{
+
+      const opt = document.createElement("option");
+      opt.value=e.name_task;
+      opt.innerText=e.name_task;
+      cboAddSubTasks.appendChild(opt);
+      
+
+    });
+
+
+  });
 
   partitionDiv.appendChild(inpArea);
   newTaskBody.appendChild(partitionDiv);
@@ -362,7 +468,7 @@ function createTopics(){
 
 }
 
-function NewMultiTask(name){
+function NewMultiTask(name, close, id){
 
   const div = document.createElement("div");
   div.classList.add("topicArea");
@@ -377,7 +483,7 @@ function NewMultiTask(name){
   </svg></div`;
   div.appendChild(h1);
   div.appendChild(a);
-  a.addEventListener("click", ()=>{ div.remove() });
+  a.addEventListener("click", ()=>{close(id); div.remove()});
 
   return div;
 }
