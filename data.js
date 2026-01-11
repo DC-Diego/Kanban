@@ -25,7 +25,7 @@ class Group{
 }
 
 class Task{
-  constructor(id, name, desc, id_group = 0, status, endDate){
+  constructor(id, name, desc, id_group = 0, status, endDate, priority){
     this.id_task = id; // PK
     this.id_group = id_group; // FK - Group(id_group)
     this.name_task = name;
@@ -35,7 +35,7 @@ class Task{
     this.initData = null ;
     this.endDate_task = null;
     this.deadLine_task = endDate;
-    this.priority = null;
+    this.priority = priority;
     this.topics = [];    
     //TASK has description, name, group, status, time ....
     //NOTE: Just a 
@@ -52,7 +52,7 @@ class Task{
       total+=e.status!=2;
       qtd += e.status == 1;
     });
-    return qtd/total;
+    return (total)?qtd/total:1;
   }
 
 

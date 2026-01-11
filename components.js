@@ -1,4 +1,4 @@
-import {Groups, tasks, MultiTasks } from "./file.js"
+import {Groups, tasks, MultiTasks, createNewTask, createNewGroup, createNewMultiTask } from "./file.js"
 import {MultiTask, Task, Group, Topic} from "./data.js"
 
 const SPA  = document.querySelector(".SPAs");
@@ -39,9 +39,9 @@ headerTabs.forEach((e,i)=>{
   tabEventHandler(e, tabs[i]); 
 });
 
-function newTab(type = null, closeTabEvent = null){
+function newTab(type = null, closeTabEvent = null, render){
   let div;
-  if(type=="newTask") div = createNewTaskTab(closeTabEvent);
+  if(type=="newTask") div = createNewTaskTab(closeTabEvent, render);
 
   return div;
 }
@@ -60,7 +60,7 @@ function setTabEnable(e, tab){
 
 
 let contador = 0;
-const newTaskToggle = ()=>{
+const newTaskToggle = (render)=>{
   const aba = {id:contador++};
   const div = document.createElement("div");
   div.classList.add("header-tab");
@@ -86,12 +86,11 @@ const newTaskToggle = ()=>{
     div.remove();
     setTimeout(() => {
       setTabEnable(document.querySelector(".header-tab"), idTasks);
-      
     }, 1);
     
   }
 
-  const taskTab = newTab("newTask", closeThisTab);
+  const taskTab = newTab("newTask", closeThisTab, render);
   SPA.appendChild(taskTab);
 
 
@@ -113,7 +112,19 @@ function multiTaskPopup(){
 
   const h1 = document.createElement("h1");
   h1.innerText = "Adicionar nova subtarefa";
+  const divCancelar = document.createElement("div");
+  divCancelar.classList.add("btn-newTask-cancel");
+  divCancelar.title= "cancelar";
+  divCancelar.innerHTML = `<svg viewBox="0 0 250 250">
+  <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>
+  <line class="line-change" x1="60" y1="190" x2="190" y2="60"></line>
+</svg>`;
+
+ 
   
+
+
+
   const cboSubTask = document.createElement("select");
   // cboSubTask.style.marginTop="5px";
   
@@ -128,6 +139,7 @@ function multiTaskPopup(){
   btnAccept.style.marginBottom="5px";
 
   div.appendChild(h1);
+  div.appendChild(divCancelar);
   div.appendChild(cboSubTask);
   div.appendChild(desc);
   div.appendChild(btnAccept);
@@ -141,7 +153,7 @@ function multiTaskPopup(){
 
 
 
-function createNewTaskTab(closeTabEvent){
+function createNewTaskTab(closeTabEvent, render){
   const tempMulti = [];
   const tasksClone = JSON.parse(JSON.stringify(tasks));
 
@@ -178,13 +190,19 @@ function createNewTaskTab(closeTabEvent){
   }
   
 
-  multi.querySelector('button').addEventListener("click", ()=>{
-    let i = cboAddSubTasks.selectedIndex;
-    appendMultiTask(cboAddSubTasks.value, removeMultiTask, tasksClone[i].id_task);
-
-    tempMulti.push(tasksClone[i].id_task);
-    tasksClone.splice(i,1);
+  multi.querySelector(".btn-newTask-cancel").addEventListener('click', ()=>{
     closePopup();
+  })
+
+  multi.querySelector('button').addEventListener("click", ()=>{
+    if(cboAddSubTasks.length){
+      let i = cboAddSubTasks.selectedIndex;
+      appendMultiTask(cboAddSubTasks.value, removeMultiTask, tasksClone[i].id_task);
+
+      tempMulti.push(tasksClone[i].id_task);
+      tasksClone.splice(i,1);
+      closePopup();
+    }
   });
 
 
@@ -204,23 +222,10 @@ function createNewTaskTab(closeTabEvent){
   newTaskHeader.classList.add("newTask-header");
   let h1 = document.createElement("h1");
   h1.innerText="Criar nova tarefa";
-  const divCancelar = document.createElement("div");
-  divCancelar.classList.add("btn-newTask-cancel");
-  divCancelar.title= "cancelar";
-  divCancelar.innerHTML = `<svg viewBox="0 0 250 250">
-  <line class="line-filter" x1="60" y1="60" x2="190" y2="190"></line>
-  <line class="line-filter" x1="60" y1="190" x2="190" y2="60"></line>
-</svg>`;
-
-
-
-  divCancelar.addEventListener('click', ()=>{
-    closeTabEvent();
-  });
-
+  
 
   newTaskHeader.appendChild(h1);
-  newTaskHeader.appendChild(divCancelar);
+  // newTaskHeader.appendChild(divCancelar);
   newTaskForm.appendChild(newTaskHeader);
 
   const newTaskBody = document.createElement("div");
@@ -295,6 +300,7 @@ function createNewTaskTab(closeTabEvent){
     }
     inputDate.classList.toggle("hidden");
     inputDate.value= new Date().toISOString().slice(0, 10);
+    inputDate.min= new Date().toISOString().slice(0, 10);
   });
 
   
@@ -351,7 +357,7 @@ function createNewTaskTab(closeTabEvent){
   h1 = document.createElement("h1");
   h1.innerText = "Topicos:";
 
-  let topicsSpace = document.createElement("div");
+  const topicsSpace = document.createElement("div");
   topicsSpace.classList.add("topicsSpace");
 
   function newTopic(){
@@ -359,16 +365,9 @@ function createNewTaskTab(closeTabEvent){
 
   }
 
-  for (let i = 0; i < 4; i++) {
-    newTopic();
-  }
-
   const btnNewTopic = document.createElement("button");
   btnNewTopic.classList.add("btnNewTopic");
   btnNewTopic.innerText = "Novo topico";
-
-
-
 
   inpArea.appendChild(h1);
   inpArea.appendChild(topicsSpace);
@@ -437,12 +436,76 @@ function createNewTaskTab(closeTabEvent){
   btnCreateNewTask.classList.add("createNewTask");
   btnCreateNewTask.innerText = "Criar tarefa";
 
-
-
   newTaskBody.appendChild(btnCreateNewTask);
-
   newTaskForm.appendChild(newTaskBody);
 
+
+
+  btnCreateNewTask.addEventListener('click', ()=>{
+    
+    // FLAG2 
+
+    if(checkBoxDate.checked && !inputDate.value ){
+      checkBoxDate.parentElement.querySelector('h1').classList.add("h1-pendent");
+      newTaskForm.scrollTo(0, 0);
+      inputDate.classList.add("input-pendence");
+      inputDate.addEventListener('change', ()=>{
+        inputDate.classList.remove("input-pendence");
+        checkBoxDate.parentElement.querySelector('h1').classList.remove("h1-pendent");
+      
+      });
+
+    }
+    if(!txtDescription.value){
+      txtDescription.parentElement.querySelector('h1').classList.add("h1-pendent");
+      txtDescription.classList.add("input-pendence");
+      txtDescription.focus();
+      txtDescription.placeholder="Preencha a descrição!";
+      let old1 =txtDescription.style.borderRadius;
+      let old2 = txtDescription.style.border;
+      txtDescription.addEventListener('keydown', ()=>{
+        txtDescription.style.borderRadius=old1;
+        txtDescription.style.border=old2;
+        txtDescription.classList.remove("input-pendence");
+        txtDescription.parentElement.querySelector('h1').classList.remove("h1-pendent");
+      });
+      txtDescription.style.borderRadius="0px 5px 5px 5px";
+      txtDescription.style.border ="solid red 3px";
+
+
+    }
+    if(!titleInput.value){
+      titleInput.parentElement.querySelector('h1').classList.add("h1-pendent");
+      titleInput.placeholder="Preencha o nome da tarefa!";
+      titleInput.classList.add("input-pendence");
+      let old1 =titleInput.style.borderRadius;
+      let old2 = titleInput.style.border;
+      titleInput.addEventListener('keydown', ()=>{
+        titleInput.style.borderRadius=old1;
+        titleInput.style.border=old2;
+        titleInput.classList.remove("input-pendence");
+        titleInput.parentElement.querySelector('h1').classList.remove("h1-pendent");
+      });
+      titleInput.style.borderRadius="0px 5px 5px 5px";
+      titleInput.style.border ="solid red 3px";
+      titleInput.focus();
+    } else if(titleInput.value && txtDescription.value && (!checkBoxDate.checked || inputDate.value)){
+      
+      
+      const task = createNewTask(titleInput.value.split(0, 50)[0], txtDescription.value.split(0, 300)[0], inputDate.value, cboGroup.selectedIndex, Number(priorityInput.value));
+      
+      for (let i = 0; i < tempMulti.length; i++) {
+        createNewMultiTask(task.id_task, tempMulti[i]);
+      }
+
+      topicsSpace.querySelectorAll('input').forEach(e=>{
+        if(e.value)task.createTopic(e.value);
+      });
+      render();
+      closeTabEvent();
+    }
+
+  });
   return newTaskTab;
 }
 
@@ -450,8 +513,7 @@ function createTopics(){
   const div = document.createElement("div");
   div.classList.add("topicArea");
   const input = document.createElement("input");
-  input.placeholder = "Topico "+Math.floor(Math.random()*1000);
-  input.value = "Topico "+Math.floor(Math.random()*1000);
+  input.placeholder = "Nome do tópico";
   const a = document.createElement("div");
   a.innerHTML=`<svg viewBox="0 0 250 250">
   <line class="line-change" x1="60" y1="60" x2="190" y2="190"></line>

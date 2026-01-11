@@ -321,6 +321,9 @@ html, body{
   flex-direction: column;
 
 }
+#id-tasks{
+  min-height: 90%;
+}
 /* 
 #id-tasks{
   width: 100%;
@@ -433,7 +436,7 @@ html, body{
 
 .task-body h1:nth-child(1){
   color: black;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: start;
   margin-bottom: 5px;
@@ -687,14 +690,17 @@ transition: 000.25s;
 }
 
 .btn-newTask-cancel{
-  aspect-ratio: 1/1;
-  height: 25px;
-  transition: 0.25s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 20px;
   border-radius: 5px;
+  aspect-ratio: 1/1;
 }
 
 .btn-newTask-cancel:hover{
-  background-color: #ffffff40;
+  background-color: #00000040;
+  transition: 0.2s;
   scale: 1.2;
 }
 
@@ -843,7 +849,6 @@ select{
   border: none;
   padding-top: 7px;
   padding-bottom: 7px;
-  transition: 0.25s;
 
 }
 
@@ -922,3 +927,5 @@ select{
   word-break: break-word;
 }
 .btnAccept{transition: none;}
+
+

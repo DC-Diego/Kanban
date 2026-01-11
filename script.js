@@ -81,57 +81,29 @@ const btnNewTask = document.getElementById("btnNewTask");
 
 
 function eventToDisplays(binder, taskDiv, hideObjs){
-
     binder.addEventListener('click', (f)=>{
       binder.querySelector("svg").classList.toggle("rotateChange");
       hideObjs.desc.classList.toggle("hidden"); 
       hideObjs.percent.classList.toggle("hidden"); 
       hideObjs.progressBar.classList.toggle("hidden"); 
-      
-      // ADD o modo menor para caber todas as tasks, ou modo completo "Quando clicar no binder"
-
-      /*
-        Modo Menor:
-        |----------------------------|
-        |  #id  -  #group          < |
-        |----------------------------|
-        | #title              #data  |
-        |----------------------------|
-
-        Modo Normal:
-        |----------------------------|
-        |  #id  -  #group          < |
-        |----------------------------|
-        | #title              #data  |
-        | #desc                      |
-        | #percent                   |
-        | #percentbar                |
-        |----------------------------|
-
-      
-      */
-
-    })
-    
-  
+    });
 }
 
 function renderTasks(){
-  // return;
   document.querySelectorAll(".task").forEach(e=>{
     e.remove();
-  })
+  });
 
   const statusColumn = ["notStarted","inProgress","done","canceled","pendent"] ;
-    
-  for (let i = 0; i < 31*1; i++) {
-    let choosenStatus = statusColumn[Math.floor(Math.random()*statusColumn.length)];
+  tasks.forEach(task=>{
+
+
+    let choosenStatus = statusColumn[task.status];
 
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");    
     taskDiv.draggable = true;
 
-    // taskDiv.classList.add("notStarted");    
     taskDiv.classList.add(`${choosenStatus}`);    
 
     const header = document.createElement("div");
@@ -143,8 +115,8 @@ function renderTasks(){
     const id = document.createElement("h1");
     const group = document.createElement("h1");
     // const divIcon = document.createElement("div");
-    id.innerText="#"+i;
-    group.innerText= ` - ${Groups[Math.floor(Math.random()*Groups.length)].name_group}`;
+    id.innerText="#"+task.id_task;
+    group.innerText= ` - ${Groups[task.id_group].name_group}`;
     idDiv.appendChild(id);
     header.appendChild(group);
 
@@ -154,7 +126,7 @@ function renderTasks(){
     taskBody.classList.add("task-body");      
     taskDiv.appendChild(taskBody);
 
-    let perc = Math.floor(100* Math.random())/100;
+    let perc = task.calculateProgress();
 
 
     const titleDateAlign = document.createElement("div");
@@ -166,9 +138,10 @@ function renderTasks(){
     const desc = document.createElement("h1");
     const date = document.createElement("h1");
     const percent = document.createElement("h1");
-    title.innerText = "Title "+i;
-    desc.innerText = "Lorem ipsum its not lorem ipsum, im writing random text as descriptio... "+i;
-    date.innerText = "12/1"+i;
+    title.innerText = task.name_task.slice(0, 10)+"...";
+    desc.innerText = task.desc_task.slice(0, 50)+"...";
+    date.innerText = task.deadLine_task.replaceAll("-","/");
+
     percent.innerText = "percent completed: "+Math.floor(perc*100)+"%";
     
     titleDateAlign.appendChild(title);
@@ -200,8 +173,7 @@ function renderTasks(){
 
     eventToDisplays(displayChange, taskDiv, {desc:desc,percent:percent, progressBar:progressBar});
 
-
-  }
+  });
 
 
 
@@ -211,7 +183,7 @@ function renderTasks(){
 
 
 
-btnNewTask.addEventListener("click", newTaskToggle);
+btnNewTask.addEventListener("click", ()=>{newTaskToggle(renderTasks)});
 
 document.querySelectorAll(".task").forEach(e=>{
   e.addEventListener("dragStart", (event)=>{

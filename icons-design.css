@@ -62,3 +62,13 @@ svg{
 
 }
 
+.h1-pendent{
+  background: red;
+  padding-left: 2px;
+  border-radius: 5px 5px 0px 0px;
+  padding-right: 2px;
+}
+.input-pendence{
+  border: solid 3px red;
+  border-radius: 0px 5px 5px 5px;
+}

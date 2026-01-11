@@ -4,20 +4,48 @@ const Groups =[];
 const tasks = [];
 const MultiTasks =[];
 
+let groupInc = 0;
+let tasksInc = 0;
+let multiInc = 0;
 
 
-Groups.push(new Group(0, "Sem Classificação", "-"));
-Groups.push(new Group(1, "TI", "-"));
-Groups.push(new Group(2, "Banana com arroz", "-"));
-Groups.push(new Group(3, "Cebolinha", "-"));
+function createNewGroup(name, desc){
+  const group = new Group(groupInc, name, desc);
+  groupInc++;
+  Groups.push(group);
+  return group;
+
+}
+
+function createNewTask(name, desc, endDate, idGroup, priority){
+  const tasky = new Task( tasksInc,name, desc, idGroup, 0, endDate, priority);
+  tasksInc++;
+  tasks.push(tasky);
+  return tasky;
+}
+
+function createNewMultiTask(father, son){
+  const m = new MultiTask(multiInc, father, son);
+  multiInc++;
+  MultiTasks.push(m);
+  
+  return m;
+}
+
+
+
+createNewGroup("Sem Classificação", "-");
+createNewGroup("TI", "-");
+createNewGroup("Banana com arroz", "-");
+createNewGroup("Cebolinha", "-");
+
 
 // constructor(id, name, desc, id_group = 0, status, endDate)
-
-tasks.push(new Task(0, "Task 1", "BAnana com assai, se ela pulasse ela explode com verde e morango, javascript", 0, 0, '23-01-2301' ));
-tasks.push(new Task(1, "Task 2", "выфвцшуош Ышьцуз йлощлщащл флщац бчьсбяюмчофы кьц", 0, 0, '23-01-1999' ));
-tasks.push(new Task(2, "Task 3", "Esqueci de colcoar a descrição", 0, 0, '02-02-2000' ));
-tasks.push(new Task(3, "Task 4", "", 0, 0, '10-10-2000' ));
-
+// createNewTask("Task 1", "BAnana com assai, se ela pulasse ela explode com verde e morango, javascript", 0, '23-01-2301',3 );
+// createNewTask("Task 2", "выфвцшуош Ышьцуз йлощлщащл флщац бчьсбяюмчофы кьц", 0,  '23-01-1999',3);
+// createNewTask("Task 3", "Esqueci de colcoar a descrição", 0, '02-02-2000',3 );
+// createNewTask("Task 4", "", 0,  '10-10-2000',3 );
 
 
-export {Groups, tasks, MultiTasks}
+
+export {Groups, tasks, MultiTasks,createNewTask, createNewGroup, createNewMultiTask}
