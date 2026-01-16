@@ -102,7 +102,6 @@ function renderTasks(){
 
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");    
-    taskDiv.draggable = true;
 
     taskDiv.classList.add(`${choosenStatus}`);    
 

@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <link href="style.css" rel="stylesheet">
+  <link href="openTask.css" rel="stylesheet">
   <link href="icons-design.css" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>TASK and WORKFLOW MANAGEMENT SYSTEM</title>
 </head>
 <body style="display: flex;align-items:center;justify-content:center;">
@@ -144,7 +146,7 @@
 
 
       </div>
-      <div id="id-tasks" class="task-tab taskActive">
+      <div id="id-tasks" class="task-tab">
 
 
         <div class="task-columns">
@@ -225,6 +227,105 @@
 
        
       </div>
+     
+
+      <div class="task-tab open-task-tab taskActive">
+        <div class="open-task-form">
+          <div class="newTask-header">
+            <h1> #id - Nome da Tarefa aberta</h1>
+          </div>
+          <div class="newTask-body">
+
+            <div class="newTask-body-partition">
+              <div class="newTask-input-area">
+                <h1>Grupo da tarefa:</h1>
+                <p>BLABLBLA</p>
+              </div>
+              <div class="newTask-input-area">
+                <h1>Status da tarefa:</h1>
+                <p style="border-left: 5px solid #DC2626;" >Pendente</p>
+              </div>
+            </div>
+
+            <div class="newTask-body-partition">
+              <div class="newTask-input-area">
+                <h1>Prioridade:</h1>
+                <p style="width: 80px; margin-left: 5px;">0</p>
+                <input style="width: 80px; margin-left: 5px; padding: 8px 10px; border-radius: 5px;border: none; " min="0" value="0" type="number" value="none">
+              </div>
+            </div>
+
+            <div class="newTask-body-partition">
+              <div class="newTask-input-area">
+                <h1>Descrição:</h1>
+                <p style="width: 100%; padding: 8px 3px;min-height: 90px">BLABLBLA</p>
+                <textarea cols="30" rows="6" placeholder="Descrição da tarefa"></textarea>
+              </div>
+            </div>
+
+            <div class="newTask-body-partition">
+              <div class="newTask-input-area">
+                <h1>Data de Criação:</h1>
+                <p>BLABLBLA</p>
+                <input  min="0" value="0" type="date" value="none">
+              </div>
+              <div class="newTask-input-area">
+                <h1>Data de Início:</h1>
+                <p>BLABLBLA</p>
+                <input  min="0" value="0" type="date" value="none">
+                
+              </div>
+            </div>
+
+            
+            <div class="newTask-body-partition">
+              <div class="newTask-input-area">
+                <h1>Data de Validade/Vencimento:</h1>
+                <p>BLABLBLA</p>
+                <input  min="0" value="0" type="date" value="none">
+                
+              </div>
+              <div class="newTask-input-area">
+                <h1>Data de Término:</h1>
+                <p>BLABLBLA</p>
+                <input  min="0" value="0" type="date" value="none">
+              </div>
+            </div>
+            <!--<h1> Task aberta</h1>
+            opened tasks
+            
+            <br>
+            Editar tools menu: Botão de editar, e cancelar tarefa
+            |ID | e | Nome | e | Grupo da tarefa |
+            | Status da tarefa (N started, In Progress ...) - com a cor do respectivo status| e |Prioridade|
+            <br>
+            <br>
+            
+            | Data de crição | e | Data de inicio|
+            <br>
+            | Data de Validade/vencimento| e | Data de termino|
+            <br>
+            
+            | Topicos |
+            this.topics = [];    
+            <br>
+            
+            | Multitasks |
+            mutlitasks.sons= [];    
+            
+
+            
+            <br>
+            
+            
+            -->
+            
+            
+          </div>
+        </div>
+          
+      </div>
+
 
       <div id="id-calendar" class="task-tab"></div>
 

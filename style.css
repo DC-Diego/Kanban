@@ -141,7 +141,7 @@ html, body{
   font-weight: 300;
 }
 .active-tab{
-  background-color: #1f1f1f;
+  background-color: #121212;
   position: relative;
   cursor: default;
 }
@@ -150,7 +150,7 @@ html, body{
 }
 
 .active-tab:hover{
-  background-color: #1f1f1f;
+  background-color: #121212;
   cursor: default;
 }
 
@@ -176,7 +176,7 @@ html, body{
 }
 
 .tools-menu{
-  background-color: #1f1f1f;
+  background-color: #121212;
   width: 100%;
   height: 35px;
   padding-top: 3px;
@@ -282,7 +282,7 @@ html, body{
   width: 100%;
   height: 25px;
   min-height: 25px;
-  background-color: #1f1f1f ;
+  background-color: #121212 ;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -608,7 +608,7 @@ html, body{
   height: 90%;
   width: 30px;
   border-radius: 5px 5px 0px 0px;
-  background-color: #1f1f1f;
+  background-color: #121212;
   transition: 0.25s;
 }
 .header-nav-buttons:hover{
@@ -650,13 +650,13 @@ transition: 000.25s;
   align-items: center;
 }  
 
-.newTask-form{
+.newTask-form, .open-task-form{
   height: 95%;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0;
-  background-color: #1f1f1f;
+  background-color: #121212;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -753,7 +753,7 @@ transition: 000.25s;
   font-size: 14px;
 
 }
-.newTask-input-area input[type="text"]{
+.newTask-input-area input[type="text"], .newTask-input-area p, .newTask-input-area input[type="date"]{
   color: black;
   background-color: #ffffff;
   border-radius: 5px;
@@ -765,6 +765,11 @@ transition: 000.25s;
   padding: 8px 10px;
 
 }
+.newTask-input-area input[type="text"]:focus{
+  box-shadow: 0px 0px 0px 2px  #2563EB;
+
+}
+
 select{
   margin-left: 15px;
   padding: 5px 10px;
@@ -876,7 +881,6 @@ select{
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 15px;
-  transition: 0.25s;
 }
 
 .createNewTask:hover{
@@ -928,4 +932,9 @@ select{
 }
 .btnAccept{transition: none;}
 
+.open-task-tab{ height: 100%;}
+.open-task-form{
+  width: 60%;
 
+
+}

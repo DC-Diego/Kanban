@@ -1,4 +1,4 @@
-import {Groups, tasks, MultiTasks, createNewTask, createNewGroup, createNewMultiTask } from "./file.js"
+import {Groups, tasks, MultiTasks, createNewTask, createNewGroup, createNewMultiTask, getGroupById } from "./file.js"
 import {MultiTask, Task, Group, Topic} from "./data.js"
 
 const SPA  = document.querySelector(".SPAs");
@@ -42,8 +42,25 @@ headerTabs.forEach((e,i)=>{
 function newTab(type = null, closeTabEvent = null, render){
   let div;
   if(type=="newTask") div = createNewTaskTab(closeTabEvent, render);
+  else if(type=="openTask") div = createOpenTaskTab(closeTabEvent, render);
 
   return div;
+}
+
+
+function enableTabsId(isIdTasks){
+  if(isIdTasks){
+    document.querySelector(".subtitles").classList.remove("hidden");
+    document.querySelector(".search-area").classList.remove("hidden");
+    document.querySelector(".tool-area").classList.remove("hidden");
+  }else{
+    document.querySelector(".subtitles").classList.add("hidden");
+    document.querySelector(".search-area").classList.add("hidden");
+    document.querySelector(".tool-area").classList.add("hidden");
+  }
+
+
+  
 }
 
 function setTabEnable(e, tab){
@@ -55,6 +72,14 @@ function setTabEnable(e, tab){
     if(active) active.classList.remove("taskActive");
     tab.classList.toggle("hidden");
     tab.classList.toggle("taskActive");
+  
+  
+    enableTabsId(tab===idTasks);
+  
+  
+  
+  
+  
   }
 }
 
@@ -151,7 +176,13 @@ function multiTaskPopup(){
 
 
 
+function createOpenTaskTab(closeTabEvent, render){
 
+
+
+
+
+}
 
 function createNewTaskTab(closeTabEvent, render){
   const tempMulti = [];
@@ -550,5 +581,6 @@ function NewMultiTask(name, close, id){
   return div;
 }
 
-
 export {tabEventHandler, createDisplayChanger, newTab, setTabEnable, newTaskToggle, createNewTaskTab, NewMultiTask, createTopics};
+
+

@@ -17,12 +17,51 @@ function createNewGroup(name, desc){
 
 }
 
+function getGroupById(id){
+  let start = 0; 
+  let end = Groups.length-1; 
+  
+  do {
+    let middle = Math.floor((end+start)/2); 
+    if(Groups[middle].id_group == id)
+      return Groups[middle];
+    if(Groups[middle].id_group < id)
+      start = middle+1;
+    else
+      end = middle-1;
+  } while (start <= end);
+  return null;
+
+}
+
+
+
+
 function createNewTask(name, desc, endDate, idGroup, priority){
   const tasky = new Task( tasksInc,name, desc, idGroup, 0, endDate, priority);
   tasksInc++;
   tasks.push(tasky);
   return tasky;
 }
+
+function getTaskById(id){
+  let start = 0; 
+  let end = tasks.length-1; 
+  
+  do {
+    let middle = Math.floor((end+start)/2); 
+    if(tasks[middle].id_task == id)
+      return tasks[middle];
+    if(tasks[middle].id_task < id)
+      start = middle+1;
+    else
+      end = middle-1;
+  } while (start <= end);
+  return null;
+
+}
+
+
 
 function createNewMultiTask(father, son){
   const m = new MultiTask(multiInc, father, son);
@@ -38,7 +77,7 @@ createNewGroup("Sem Classificação", "-");
 createNewGroup("TI", "-");
 createNewGroup("Banana com arroz", "-");
 createNewGroup("Cebolinha", "-");
-
+console.log(Groups)
 
 // constructor(id, name, desc, id_group = 0, status, endDate)
 // createNewTask("Task 1", "BAnana com assai, se ela pulasse ela explode com verde e morango, javascript", 0, '23-01-2301',3 );
@@ -48,4 +87,4 @@ createNewGroup("Cebolinha", "-");
 
 
 
-export {Groups, tasks, MultiTasks,createNewTask, createNewGroup, createNewMultiTask}
+export {Groups, tasks, MultiTasks,createNewTask, createNewGroup, createNewMultiTask, getGroupById, getTaskById}
