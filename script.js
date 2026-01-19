@@ -1,7 +1,7 @@
 import {Groups, tasks, MultiTasks } from "./file.js"
 import {MultiTask, Task, Group, Topic} from "./data.js"
-import {createDisplayChanger, newTab, setTabEnable, newTaskToggle} from "./components.js"
-
+import {createDisplayChanger, newPage, setTabEnable, newTab, tabEventHandler} from "./components.js"
+import {viewTaskComponent} from "./viewTaskComponent.js";
 
 
 // Experiment:
@@ -101,7 +101,38 @@ function renderTasks(){
     let choosenStatus = statusColumn[task.status];
 
     const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task");    
+    taskDiv.classList.add("task"); 
+    
+    taskDiv.addEventListener('click', ()=>{
+      // TAG
+
+      const closeThisTab = ()=>{
+        const idTasks = document.getElementById("id-tasks");
+        page.remove();
+        tab.remove();
+        setTimeout(() => {
+          setTabEnable(document.querySelector(".header-tab"), idTasks);
+        }, 1);
+        
+      }
+
+    
+
+      const tab = newTab(task.name_task.split(0, 20), "tarefa...");
+      const page = viewTaskComponent(task, closeThisTab, renderTasks);
+      appendPage(page);
+
+      tab.querySelector(".closeTabSvg").addEventListener('click', ()=>{
+        closeThisTab();
+      });
+      
+
+
+      tabEventHandler(tab, page);
+      setTabEnable(tab, page);
+
+    });
+
 
     taskDiv.classList.add(`${choosenStatus}`);    
 
@@ -179,10 +210,43 @@ function renderTasks(){
 }
 
 
+function appendPage(page){
+  const SPA  = document.querySelector(".SPAs");
+  SPA.appendChild(page);
+}
+
+let contador = 0;
+btnNewTask.addEventListener("click", ()=>{
+  const tab =  newTab("nova tarefa "+contador, "nova tarefa");
+  contador++;
+ 
+  
+  const closeThisTab = ()=>{
+    const idTasks = document.getElementById("id-tasks");
+    taskPage.remove();
+    tab.remove();
+    setTimeout(() => {
+      setTabEnable(document.querySelector(".header-tab"), idTasks);
+    }, 1);
+    
+  }
 
 
+  const taskPage = newPage("newTask", closeThisTab, renderTasks);
+  appendPage(taskPage);
 
-btnNewTask.addEventListener("click", ()=>{newTaskToggle(renderTasks)});
+  tab.querySelector(".closeTabSvg").addEventListener('click', ()=>{
+    closeThisTab();
+  });
+  
+  
+  
+
+  tabEventHandler(tab, taskPage);
+  setTabEnable(tab, taskPage);
+  
+
+});
 
 document.querySelectorAll(".task").forEach(e=>{
   e.addEventListener("dragStart", (event)=>{

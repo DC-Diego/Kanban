@@ -1,7 +1,9 @@
 import {Groups, tasks, MultiTasks, createNewTask, createNewGroup, createNewMultiTask, getGroupById } from "./file.js"
-import {MultiTask, Task, Group, Topic} from "./data.js"
+import {MultiTask, Task, Group, Topic} from "./data.js";
 
-const SPA  = document.querySelector(".SPAs");
+
+
+
 const TabsArea  = document.querySelector(".tabber");
 const headerTabs = document.querySelectorAll(".header-tab");
 
@@ -39,10 +41,10 @@ headerTabs.forEach((e,i)=>{
   tabEventHandler(e, tabs[i]); 
 });
 
-function newTab(type = null, closeTabEvent = null, render){
+function newPage(type = null, closeTabEvent = null, render){
   let div;
   if(type=="newTask") div = createNewTaskTab(closeTabEvent, render);
-  else if(type=="openTask") div = createOpenTaskTab(closeTabEvent, render);
+  // else if(type=="openTask") div = viewTaskComponent( task,closeTabEvent, render);
 
   return div;
 }
@@ -84,48 +86,24 @@ function setTabEnable(e, tab){
 }
 
 
-let contador = 0;
-const newTaskToggle = (render)=>{
-  const aba = {id:contador++};
+const newTab = (name, title)=>{
   const div = document.createElement("div");
   div.classList.add("header-tab");
   const h = document.createElement("h1");
-  h.innerText="Task "+aba.id;
+  h.innerText=name;
   const closeTab = document.createElement("div");
   closeTab.classList.add("closeTabSvg");
   closeTab.innerHTML = `<svg viewBox="0 0 250 250">
   <line class="line-filter" x1="80" y1="80" x2="180" y2="180"></line>
   <line class="line-filter" x1="80" y1="180" x2="180" y2="80"></line>
   </svg> `;
-  
-  
   div.appendChild(h);
   div.appendChild(closeTab);
   TabsArea.appendChild(div);
   
-  div.title = "Nova tarefa "+aba.id;
+  div.title = title;
 
-  
-  const closeThisTab = ()=>{
-    taskTab.remove();
-    div.remove();
-    setTimeout(() => {
-      setTabEnable(document.querySelector(".header-tab"), idTasks);
-    }, 1);
-    
-  }
-
-  const taskTab = newTab("newTask", closeThisTab, render);
-  SPA.appendChild(taskTab);
-
-
-
-  closeTab.addEventListener('click', ()=>{
-    closeThisTab();
-  });
-
-  tabEventHandler(div, taskTab);
-  setTabEnable(div, taskTab);
+  return div;
 };
 
 
@@ -176,13 +154,6 @@ function multiTaskPopup(){
 
 
 
-function createOpenTaskTab(closeTabEvent, render){
-
-
-
-
-
-}
 
 function createNewTaskTab(closeTabEvent, render){
   const tempMulti = [];
@@ -581,6 +552,6 @@ function NewMultiTask(name, close, id){
   return div;
 }
 
-export {tabEventHandler, createDisplayChanger, newTab, setTabEnable, newTaskToggle, createNewTaskTab, NewMultiTask, createTopics};
+export {tabEventHandler, createDisplayChanger, newPage, setTabEnable, newTab, createNewTaskTab, NewMultiTask, createTopics};
 
 

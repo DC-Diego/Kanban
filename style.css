@@ -668,7 +668,7 @@ transition: 000.25s;
 
 
 
-.newTask::-webkit-scrollbar, .newTask-form::-webkit-scrollbar{visibility: hidden;}
+.newTask::-webkit-scrollbar,.open-task-form::-webkit-scrollbar ,.newTask-form::-webkit-scrollbar{visibility: hidden;}
 
 .newTask-header{
   width: 90%;

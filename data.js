@@ -32,7 +32,7 @@ class Task{
     this.desc_task = desc;
     this.status = status;
     this.creationDate_task = new Date().toISOString().slice(0, 10) ;
-    this.initData = null ;
+    this.initDate = null ;
     this.endDate_task = null;
     this.deadLine_task = endDate;
     this.priority = priority;
