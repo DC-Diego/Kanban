@@ -103,7 +103,8 @@ function renderTasks(){
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task"); 
     
-    taskDiv.addEventListener('click', ()=>{
+    const taskBody = document.createElement("div");
+    taskBody.addEventListener('click', ()=>{
       // TAG
 
       const closeThisTab = ()=>{
@@ -143,16 +144,15 @@ function renderTasks(){
     const idDiv = document.createElement("div");
     header.appendChild(idDiv);
     const id = document.createElement("h1");
-    const group = document.createElement("h1");
+    const title = document.createElement("h1");
     // const divIcon = document.createElement("div");
     id.innerText="#"+task.id_task;
-    group.innerText= ` - ${Groups[task.id_group].name_group}`;
+    title.innerText= ` - ${task.name_task.slice(0, 20)}`;
     idDiv.appendChild(id);
-    header.appendChild(group);
+    header.appendChild(title);
 
     const displayChange = createDisplayChanger();
     header.appendChild(displayChange);
-    const taskBody = document.createElement("div");
     taskBody.classList.add("task-body");      
     taskDiv.appendChild(taskBody);
 
@@ -164,17 +164,18 @@ function renderTasks(){
     taskBody.appendChild(titleDateAlign);
 
 
-    const title = document.createElement("h1");
+
+    const group = document.createElement("h1");
     const desc = document.createElement("h1");
     const date = document.createElement("h1");
     const percent = document.createElement("h1");
-    title.innerText = task.name_task.slice(0, 10)+"...";
+    group.innerText = Groups[task.id_group].name_group /*task.name_task.slice(0, 10)+"..."*/;
     desc.innerText = task.desc_task.slice(0, 50)+"...";
     date.innerText = task.deadLine_task.replaceAll("-","/");
 
     percent.innerText = "percent completed: "+Math.floor(perc*100)+"%";
     
-    titleDateAlign.appendChild(title);
+    titleDateAlign.appendChild(group);
     titleDateAlign.appendChild(date);
     taskBody.appendChild(desc);
     taskBody.appendChild(percent);
@@ -201,7 +202,7 @@ function renderTasks(){
     progressBar.classList.toggle("hidden"); 
     
 
-    eventToDisplays(displayChange, taskDiv, {desc:desc,percent:percent, progressBar:progressBar});
+    eventToDisplays(header, taskDiv, {desc:desc,percent:percent, progressBar:progressBar});
 
   });
 

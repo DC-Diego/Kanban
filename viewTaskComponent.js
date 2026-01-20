@@ -1,7 +1,7 @@
 import {Groups, tasks, MultiTasks, createNewTask, createNewGroup, createNewMultiTask, getGroupById } from "./file.js"
 
 function viewTaskComponent(task, render, close){
-
+  let ISEDITMODE = false;
   const status = [
     {
       type: "not started",
@@ -38,8 +38,12 @@ function viewTaskComponent(task, render, close){
   
   let h1 = document.createElement("h1");
   h1.innerText = `#${task.id_task} - ${task.name_task}`;
-  
+  const btnEditCancel = document.createElement('button');
+  btnEditCancel.innerText="Editar tarefa";
+  btnEditCancel.classList.add("btnEditCancel");
+
   newTaskHeader.appendChild(h1);
+  newTaskHeader.appendChild(btnEditCancel);
   
   const newTaskBody = document.createElement("div");
   newTaskBody.classList.add("newTask-body");
@@ -88,18 +92,18 @@ function viewTaskComponent(task, render, close){
 
   h1 = document.createElement("h1");
   p = document.createElement("p");
-  let input = document.createElement("input");
+  const inputPriority = document.createElement("input");
 
   h1.innerText="Prioridade:";
   p.innerText=task.priority;
   p.style.width = "80px";
   p.style.marginLeft = "5px";
-  input.style = "width: 80px; margin-left: 5px; padding: 8px 10px; border-radius: 5px;border: none; ";
-  input.min = 0; input.value = task.priority; input.type = "number";
-
+  inputPriority.style = "width: 80px; margin-left: 5px; padding: 8px 10px; border-radius: 5px;border: none; ";
+  inputPriority.min =(task.deadLine_task?3:0); inputPriority.value = task.priority; inputPriority.type = "number";
+  inputPriority.classList.add("hidden");
   inputArea.appendChild(h1);
   inputArea.appendChild(p);
-  inputArea.appendChild(input);
+  inputArea.appendChild(inputPriority);
 
   partition.appendChild(inputArea);
   newTaskBody.appendChild(partition);
@@ -113,7 +117,8 @@ function viewTaskComponent(task, render, close){
 
   h1 = document.createElement("h1");
   p = document.createElement("p");
-  let textarea = document.createElement("textarea");
+  const textarea = document.createElement("textarea");
+  textarea.classList.add("hidden");
 
   h1.innerText = "Descrição:";
   p.innerText = `${task.desc_task}`;
@@ -172,12 +177,12 @@ function viewTaskComponent(task, render, close){
   p = document.createElement("p");
   h1.innerText = "Data de prazo:";
   p.innerText = `${task.deadLine_task || '-'}`;
-  input = document.createElement("input");
-  input.min=new Date().toISOString().slice(0, 10); input.value=`${task.deadLine_task || new Date().toISOString().slice(0, 10)}`;  input.type="date"; 
-  
+  const inputDeadLine = document.createElement("input");
+  inputDeadLine.min=new Date().toISOString().slice(0, 10); inputDeadLine.value=`${task.deadLine_task || new Date().toISOString().slice(0, 10)}`;  inputDeadLine.type="date"; 
+  inputDeadLine.classList.add("hidden");
   inputArea.appendChild(h1);
   inputArea.appendChild(p);
-  inputArea.appendChild(input); 
+  inputArea.appendChild(inputDeadLine); 
   partition.appendChild(inputArea);
     
   inputArea = document.createElement("div");
@@ -241,6 +246,44 @@ function viewTaskComponent(task, render, close){
   taskForm.appendChild(newTaskBody);
   mainDiv.appendChild(taskForm);
   
+
+
+
+
+  btnEditCancel.addEventListener('click', ()=>{
+    ISEDITMODE = !ISEDITMODE;
+    if(ISEDITMODE){//EDIÇÂO ATIVA
+      btnEditCancel.innerText = "cancelar";
+      inputPriority.classList.remove("hidden")
+      inputDeadLine.classList.remove("hidden")
+      textarea.classList.remove("hidden")
+      textarea.parentElement.querySelector("p").classList.add("hidden")
+      inputPriority.parentElement.querySelector("p").classList.add("hidden")
+      inputDeadLine.parentElement.querySelector("p").classList.add("hidden")
+      
+      
+    }else{//EDIÇÂO DESATIVADA
+      btnEditCancel.innerText="Editar tarefa";
+      inputPriority.classList.add("hidden")
+      inputDeadLine.classList.add("hidden")
+      textarea.classList.add("hidden")
+      textarea.parentElement.querySelector("p").classList.remove("hidden")
+      inputPriority.parentElement.querySelector("p").classList.remove("hidden")
+      inputDeadLine.parentElement.querySelector("p").classList.remove("hidden")
+      
+
+    }
+
+
+
+  });
+
+
+
+
+
+
+
   return mainDiv;
   /*<div class="task-tab open-task-tab taskActive">
   <div class="open-task-form">
