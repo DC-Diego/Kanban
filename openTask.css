@@ -1,0 +1,15 @@
+.open-task{
+  background-color: transparent;
+  overflow: hidden;
+}
+.open-task p{
+  color: #606060;
+
+}
+.open-task-cancel-btn{
+  background-color: #c71414;
+}
+.open-task-cancel-btn:hover{
+  background-color: #eb2f2f;
+
+}

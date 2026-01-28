@@ -98,7 +98,7 @@ function viewTaskComponent(task, render, close){
   p.innerText=task.priority;
   p.style.width = "80px";
   p.style.marginLeft = "5px";
-  inputPriority.style = "width: 80px; margin-left: 5px; padding: 8px 10px; border-radius: 5px;border: none; ";
+  inputPriority.style = "width: 80px; margin-left: 5px; padding: 6px 10px; border-radius: 5px;border: none; ";
   inputPriority.min =(task.deadLine_task?3:0); inputPriority.value = task.priority; inputPriority.type = "number";
   inputPriority.classList.add("hidden");
   inputArea.appendChild(h1);
@@ -212,10 +212,13 @@ function viewTaskComponent(task, render, close){
   const topicsSpace = document.createElement("div");
   h1.innerText = "Tópicos:";
   topicsSpace.classList.add("topicsSpace");
-
-
+  const btnNewTopic = document.createElement("button");
+  btnNewTopic.classList.add("btnNewTopic");
+  btnNewTopic.classList.add("hidden");
+  btnNewTopic.innerText = "Novo tópico";
   inputArea.appendChild(h1);
   inputArea.appendChild(topicsSpace);
+  inputArea.appendChild(btnNewTopic);
 
   partition.appendChild(inputArea);
   newTaskBody.appendChild(partition);
@@ -232,13 +235,25 @@ function viewTaskComponent(task, render, close){
   const multiTaskArea = document.createElement("div");
   h1.innerText = "Sub-tasks:";
   multiTaskArea.classList.add("multiTaskArea");
+  const btnNewMultiTask = document.createElement("button");
+  btnNewMultiTask.innerText = "Nova sub tarefa";
+  btnNewMultiTask.classList.add("btnNewMultiTask");
+  btnNewMultiTask.classList.add("hidden");
 
   inputArea.appendChild(h1);
   inputArea.appendChild(multiTaskArea);
+  inputArea.appendChild(btnNewMultiTask);
 
 
   partition.appendChild(inputArea);
   newTaskBody.appendChild(partition);
+  
+  const btnSaveEdition = document.createElement("button");
+  btnSaveEdition.classList.add("createNewTask");
+  btnSaveEdition.classList.add("hidden");
+  btnSaveEdition.innerText = "Salvar edição";
+
+  newTaskBody.appendChild(btnSaveEdition);
 
 
 
@@ -247,36 +262,39 @@ function viewTaskComponent(task, render, close){
   mainDiv.appendChild(taskForm);
   
 
-
-
-
-  btnEditCancel.addEventListener('click', ()=>{
+  const switchEditMode = ()=>{
     ISEDITMODE = !ISEDITMODE;
     if(ISEDITMODE){//EDIÇÂO ATIVA
       btnEditCancel.innerText = "cancelar";
+      btnEditCancel.classList.add("open-task-cancel-btn")
+      btnSaveEdition.classList.remove("hidden");
+      btnNewTopic.classList.remove("hidden");
+      btnNewMultiTask.classList.remove("hidden");
       inputPriority.classList.remove("hidden")
       inputDeadLine.classList.remove("hidden")
       textarea.classList.remove("hidden")
       textarea.parentElement.querySelector("p").classList.add("hidden")
       inputPriority.parentElement.querySelector("p").classList.add("hidden")
       inputDeadLine.parentElement.querySelector("p").classList.add("hidden")
-      
-      
+      document.querySelector(".SPAs").style.backgroundColor = "#e4dfb3";
     }else{//EDIÇÂO DESATIVADA
       btnEditCancel.innerText="Editar tarefa";
+      btnEditCancel.classList.remove("open-task-cancel-btn");
+      btnSaveEdition.classList.add("hidden");
+      btnNewTopic.classList.add("hidden");
+      btnNewMultiTask.classList.add("hidden");
       inputPriority.classList.add("hidden")
       inputDeadLine.classList.add("hidden")
       textarea.classList.add("hidden")
       textarea.parentElement.querySelector("p").classList.remove("hidden")
       inputPriority.parentElement.querySelector("p").classList.remove("hidden")
       inputDeadLine.parentElement.querySelector("p").classList.remove("hidden")
-      
-
+      document.querySelector(".SPAs").style.backgroundColor = "#d8d8d8";
     }
+  }
 
-
-
-  });
+  btnSaveEdition.addEventListener('click', switchEditMode)
+  btnEditCancel.addEventListener('click', switchEditMode);
 
 
 
